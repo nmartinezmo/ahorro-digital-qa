@@ -39,7 +39,7 @@ ahorro-digital-qa/
 
 1. **Clone the repository**
 ```bash
-git clone https://github.com/YOUR_USERNAME/ahorro-digital-qa.git
+git clone https://github.com/nicomar9928/ahorro-digital-qa.git
 cd ahorro-digital-qa
 ```
 
