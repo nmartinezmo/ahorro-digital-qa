@@ -20,7 +20,7 @@ export default function Login() {
       await login(email, password)
       navigate('/simulator')
     } catch (err) {
-      setError(err.message || 'Login failed')
+      setError(err.message || 'Error al iniciar sesión')
     } finally {
       setLoading(false)
     }
@@ -33,7 +33,7 @@ export default function Login() {
       <div className="max-w-md w-full bg-white rounded-xl shadow-lg p-8">
         <div className="text-center mb-8">
           <h1 className="text-2xl font-bold text-gray-900">Ahorro Digital</h1>
-          <p className="text-gray-600 mt-2">Sign in to your account</p>
+          <p className="text-gray-600 mt-2">Inicia sesión en tu cuenta</p>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-6">
@@ -46,7 +46,7 @@ export default function Login() {
 
           <div>
             <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
-              Email
+              Correo Electrónico
             </label>
             <div className="relative">
               <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
@@ -56,7 +56,7 @@ export default function Login() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
-                placeholder="Enter your email"
+                placeholder="Ingresa tu correo electrónico"
                 data-testid="email-input"
                 required
               />
@@ -65,7 +65,7 @@ export default function Login() {
 
           <div>
             <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
-              Password
+              Contraseña
             </label>
             <div className="relative">
               <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
@@ -75,7 +75,7 @@ export default function Login() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
-                placeholder="Enter your password"
+                placeholder="Ingresa tu contraseña"
                 data-testid="password-input"
                 required
               />
@@ -88,14 +88,14 @@ export default function Login() {
             className="w-full py-2 px-4 bg-primary-600 text-white font-medium rounded-lg hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
             data-testid="login-button"
           >
-            {loading ? 'Signing in...' : 'Sign In'}
+            {loading ? 'Iniciando sesión...' : 'Iniciar Sesión'}
           </button>
         </form>
 
         <p className="mt-6 text-center text-sm text-gray-600">
-          Don't have an account?{' '}
+          ¿No tienes cuenta?{' '}
           <Link to="/register" className="text-primary-600 hover:text-primary-700 font-medium">
-            Register here
+            Regístrate aquí
           </Link>
         </p>
       </div>

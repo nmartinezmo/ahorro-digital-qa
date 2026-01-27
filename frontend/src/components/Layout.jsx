@@ -30,7 +30,7 @@ export default function Layout() {
                   }
                 >
                   <Calculator className="w-4 h-4 mr-2" />
-                  Simulator
+                  Simulador
                 </NavLink>
                 <NavLink
                   to="/products"
@@ -43,7 +43,7 @@ export default function Layout() {
                   }
                 >
                   <Package className="w-4 h-4 mr-2" />
-                  Products
+                  Productos
                 </NavLink>
               </div>
             </div>
@@ -58,7 +58,7 @@ export default function Layout() {
                 data-testid="logout-button"
               >
                 <LogOut className="w-4 h-4 mr-2" />
-                Logout
+                Cerrar Sesión
               </button>
             </div>
           </div>

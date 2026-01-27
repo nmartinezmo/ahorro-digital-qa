@@ -26,11 +26,11 @@ export default function Register() {
 
   const getPasswordErrors = () => {
     const errors = []
-    if (password.length < 8) errors.push('At least 8 characters')
-    if (!/[a-z]/.test(password)) errors.push('One lowercase letter')
-    if (!/[A-Z]/.test(password)) errors.push('One uppercase letter')
-    if (!/\d/.test(password)) errors.push('One number')
-    if (!/[@$!%*?&]/.test(password)) errors.push('One special character (@$!%*?&)')
+    if (password.length < 8) errors.push('Mínimo 8 caracteres')
+    if (!/[a-z]/.test(password)) errors.push('Una letra minúscula')
+    if (!/[A-Z]/.test(password)) errors.push('Una letra mayúscula')
+    if (!/\d/.test(password)) errors.push('Un número')
+    if (!/[@$!%*?&]/.test(password)) errors.push('Un carácter especial (@$!%*?&)')
     return errors
   }
 
@@ -46,22 +46,22 @@ export default function Register() {
     setSuccess('')
 
     if (!name.trim()) {
-      setError('Name is required')
+      setError('El nombre es requerido')
       return
     }
 
     if (!validateEmail(email)) {
-      setError('Please enter a valid email address')
+      setError('Por favor ingresa un correo electrónico válido')
       return
     }
 
     if (!validatePassword(password)) {
-      setError('Password does not meet requirements')
+      setError('La contraseña no cumple los requisitos')
       return
     }
 
     if (password !== confirmPassword) {
-      setError('Passwords do not match')
+      setError('Las contraseñas no coinciden')
       return
     }
 
@@ -69,12 +69,12 @@ export default function Register() {
 
     try {
       await register(name, email, password)
-      setSuccess('Registration successful! Redirecting to login...')
+      setSuccess('¡Registro exitoso! Redirigiendo al inicio de sesión...')
       setTimeout(() => {
         navigate('/login')
       }, 2000)
     } catch (err) {
-      setError(err.message || 'Registration failed')
+      setError(err.message || 'Error en el registro')
     } finally {
       setLoading(false)
     }
@@ -84,8 +84,8 @@ export default function Register() {
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-primary-50 to-primary-100 px-4 py-8">
       <div className="max-w-md w-full bg-white rounded-xl shadow-lg p-8">
         <div className="text-center mb-8">
-          <h1 className="text-2xl font-bold text-gray-900">Create Account</h1>
-          <p className="text-gray-600 mt-2">Start saving with Ahorro Digital</p>
+          <h1 className="text-2xl font-bold text-gray-900">Crear Cuenta</h1>
+          <p className="text-gray-600 mt-2">Comienza a ahorrar con Ahorro Digital</p>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-5">
@@ -105,7 +105,7 @@ export default function Register() {
 
           <div>
             <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
-              Full Name <span className="text-red-500">*</span>
+              Nombre Completo <span className="text-red-500">*</span>
             </label>
             <div className="relative">
               <User className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
@@ -115,7 +115,7 @@ export default function Register() {
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
-                placeholder="Enter your full name"
+                placeholder="Ingresa tu nombre completo"
                 data-testid="name-input"
                 required
               />
@@ -124,7 +124,7 @@ export default function Register() {
 
           <div>
             <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
-              Email <span className="text-red-500">*</span>
+              Correo Electrónico <span className="text-red-500">*</span>
             </label>
             <div className="relative">
               <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
@@ -136,19 +136,19 @@ export default function Register() {
                 className={`w-full pl-10 pr-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent ${
                   email && !validateEmail(email) ? 'border-red-300' : 'border-gray-300'
                 }`}
-                placeholder="Enter your email"
+                placeholder="Ingresa tu correo electrónico"
                 data-testid="email-input"
                 required
               />
             </div>
             {email && !validateEmail(email) && (
-              <p className="mt-1 text-sm text-red-600" data-testid="email-error">Please enter a valid email</p>
+              <p className="mt-1 text-sm text-red-600" data-testid="email-error">Por favor ingresa un correo válido</p>
             )}
           </div>
 
           <div>
             <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
-              Password <span className="text-red-500">*</span>
+              Contraseña <span className="text-red-500">*</span>
             </label>
             <div className="relative">
               <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
@@ -160,14 +160,14 @@ export default function Register() {
                 className={`w-full pl-10 pr-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent ${
                   password && !validatePassword(password) ? 'border-red-300' : 'border-gray-300'
                 }`}
-                placeholder="Create a password"
+                placeholder="Crea una contraseña"
                 data-testid="password-input"
                 required
               />
             </div>
             {password && getPasswordErrors().length > 0 && (
               <div className="mt-2 text-sm text-gray-600" data-testid="password-requirements">
-                <p className="font-medium">Password needs:</p>
+                <p className="font-medium">La contraseña necesita:</p>
                 <ul className="list-disc list-inside">
                   {getPasswordErrors().map((err, i) => (
                     <li key={i} className="text-red-600">{err}</li>
@@ -179,7 +179,7 @@ export default function Register() {
 
           <div>
             <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700 mb-1">
-              Confirm Password <span className="text-red-500">*</span>
+              Confirmar Contraseña <span className="text-red-500">*</span>
             </label>
             <div className="relative">
               <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
@@ -191,13 +191,13 @@ export default function Register() {
                 className={`w-full pl-10 pr-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent ${
                   confirmPassword && password !== confirmPassword ? 'border-red-300' : 'border-gray-300'
                 }`}
-                placeholder="Confirm your password"
+                placeholder="Confirma tu contraseña"
                 data-testid="confirm-password-input"
                 required
               />
             </div>
             {confirmPassword && password !== confirmPassword && (
-              <p className="mt-1 text-sm text-red-600" data-testid="password-match-error">Passwords do not match</p>
+              <p className="mt-1 text-sm text-red-600" data-testid="password-match-error">Las contraseñas no coinciden</p>
             )}
           </div>
 
@@ -207,14 +207,14 @@ export default function Register() {
             className="w-full py-2 px-4 bg-primary-600 text-white font-medium rounded-lg hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
             data-testid="register-button"
           >
-            {loading ? 'Creating account...' : 'Create Account'}
+            {loading ? 'Creando cuenta...' : 'Crear Cuenta'}
           </button>
         </form>
 
         <p className="mt-6 text-center text-sm text-gray-600">
-          Already have an account?{' '}
+          ¿Ya tienes cuenta?{' '}
           <Link to="/login" className="text-primary-600 hover:text-primary-700 font-medium">
-            Sign in
+            Inicia sesión
           </Link>
         </p>
       </div>

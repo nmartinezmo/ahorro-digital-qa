@@ -19,7 +19,7 @@ export default function Products() {
       const data = await api.getProducts()
       setProducts(data.products)
     } catch (err) {
-      setError(err.message || 'Failed to load products')
+      setError(err.message || 'Error al cargar productos')
     } finally {
       setLoading(false)
     }
@@ -32,7 +32,7 @@ export default function Products() {
       const data = await api.getProduct(productId)
       setProductDetails(data.product)
     } catch (err) {
-      setError(err.message || 'Failed to load product details')
+      setError(err.message || 'Error al cargar detalles del producto')
     } finally {
       setDetailsLoading(false)
     }
@@ -73,8 +73,8 @@ export default function Products() {
   return (
     <div>
       <div className="mb-8">
-        <h1 className="text-2xl font-bold text-gray-900">Savings Products</h1>
-        <p className="text-gray-600 mt-1">Choose the best product for your savings goals</p>
+        <h1 className="text-2xl font-bold text-gray-900">Productos de Ahorro</h1>
+        <p className="text-gray-600 mt-1">Elige el mejor producto para tus metas de ahorro</p>
       </div>
 
       {error && (
@@ -107,11 +107,11 @@ export default function Products() {
               <div className="flex items-center justify-between pt-4 border-t">
                 <div className="flex items-center text-sm text-gray-600">
                   <DollarSign className="w-4 h-4 mr-1" />
-                  <span>Min: {formatCurrency(product.minAmount)}</span>
+                  <span>Mín: {formatCurrency(product.minAmount)}</span>
                 </div>
                 <div className="flex items-center text-sm font-medium text-green-600">
                   <TrendingUp className="w-4 h-4 mr-1" />
-                  <span>Up to {product.maxRate}%</span>
+                  <span>Hasta {product.maxRate}%</span>
                 </div>
               </div>
             </div>
@@ -124,7 +124,7 @@ export default function Products() {
           <div className="bg-white rounded-xl max-w-lg w-full max-h-[90vh] overflow-y-auto">
             <div className="p-6">
               <div className="flex items-center justify-between mb-6">
-                <h2 className="text-xl font-bold text-gray-900">Product Details</h2>
+                <h2 className="text-xl font-bold text-gray-900">Detalles del Producto</h2>
                 <button
                   onClick={closeModal}
                   className="p-2 hover:bg-gray-100 rounded-full"
@@ -151,18 +151,18 @@ export default function Products() {
                   </div>
 
                   <div className="bg-gray-50 rounded-lg p-4">
-                    <h4 className="font-medium text-gray-900 mb-2">Minimum Deposit</h4>
+                    <h4 className="font-medium text-gray-900 mb-2">Depósito Mínimo</h4>
                     <p className="text-2xl font-bold text-primary-600">
                       {formatCurrency(productDetails.minAmount)}
                     </p>
                   </div>
 
                   <div>
-                    <h4 className="font-medium text-gray-900 mb-3">Interest Rates by Term</h4>
+                    <h4 className="font-medium text-gray-900 mb-3">Tasas de Interés por Plazo</h4>
                     <div className="grid grid-cols-2 gap-3">
                       {Object.entries(productDetails.interestRates).map(([term, rate]) => (
                         <div key={term} className="bg-green-50 rounded-lg p-3 text-center">
-                          <p className="text-sm text-green-600">{term} months</p>
+                          <p className="text-sm text-green-600">{term} meses</p>
                           <p className="text-xl font-bold text-green-700">{rate}%</p>
                         </div>
                       ))}
@@ -170,7 +170,7 @@ export default function Products() {
                   </div>
 
                   <div>
-                    <h4 className="font-medium text-gray-900 mb-3">Features</h4>
+                    <h4 className="font-medium text-gray-900 mb-3">Características</h4>
                     <ul className="space-y-2">
                       {productDetails.features.map((feature, index) => (
                         <li key={index} className="flex items-center text-gray-600">
@@ -186,7 +186,7 @@ export default function Products() {
                     className="w-full py-3 px-4 bg-primary-600 text-white font-medium rounded-lg hover:bg-primary-700 transition-colors"
                     data-testid="simulate-button"
                   >
-                    Simulate with this Product
+                    Simular con este Producto
                   </button>
                 </div>
               ) : null}
